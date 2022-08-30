@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+import time
 list_one = range(50)
 list_two = range(50)
 list_three = ["+", "-", "X", "/"]
@@ -17,8 +18,13 @@ def generate_function():
         second = random.randint(1, 10)
         while first % second != 0:
             first = random.randint(1,100)
+    elif third == "X":
+        second = random.randint(1, 10)
+        first = random.randint(1,12)
+
     string = str(first)+ third + str(second)
     lab1.config(text = string)
+    clear_text()
     return (first, second, third)
      
 
@@ -37,6 +43,10 @@ lab1.pack(pady=(20, 20))
 input = Entry(window)
 input.pack()
 
+def clear_text():
+    input.delete(0, END)
+
+
 
 def helloCallBack():
 
@@ -52,15 +62,19 @@ def helloCallBack():
     else:
         ans = a//c
     return ans
-
+bg_color = "black"
 def baba():
     ans = helloCallBack()
-    #global final_ans
+    global bg_color
     if str(ans) == str(input.get()):
         final_ans = "Good"
         print(ans)
         print(input.get())
-        lab2.config(text = final_ans, fg='lightgreen')
+        if bg_color == "black":
+            bg_color = "blue"
+        else:
+            bg_color = "black"
+        lab2.config(text = final_ans, fg='lightgreen', bg = bg_color)
     else:
         final_ans = "A Not Good"
         print(ans)
