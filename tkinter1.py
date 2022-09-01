@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 import random
 import time
 list_one = range(50)
@@ -9,6 +10,7 @@ def generate_function():
     global third
     global first
     global second
+    global value
     third = random.choice(list_three)
     first = random.choice(list_one)
     second = random.choice(list_one)
@@ -25,14 +27,31 @@ def generate_function():
     string = str(first)+ third + str(second)
     lab1.config(text = string)
     clear_text()
+    switch_on()
+    try:
+        value= value+1
+    except NameError:
+        value = 1
+    update_progress(value)
+
     return (first, second, third)
-     
+
+   
+
+
+
 
 window = Tk()
 window.configure(bg='lightgreen')
 window.title("First One")
 window.minsize(width=200, height = 400)
 window.maxsize(width=400, height = 700)
+
+progress_bar = ttk.Progressbar(window, length=50, mode="determinate", orient="horizontal")
+progress_bar.pack(pady=(10, 10))  
+
+
+
 B1  = Button(window, text ="generate", command = generate_function)
 B1.pack()
 text1 = "Please \n press generate"
@@ -45,6 +64,16 @@ input.pack()
 
 def clear_text():
     input.delete(0, END)
+
+def switch_off():
+    B2["state"] = "disabled"
+    
+def switch_on():
+    B2["state"] = "normal"
+
+def update_progress(value):
+    progress_bar["value"] = value
+    window.update()
 
 
 
@@ -80,7 +109,7 @@ def baba():
         print(ans)
         print(input.get())
         lab2.config(text = final_ans, fg = "red")
-    
+    switch_off()
 
 
 
