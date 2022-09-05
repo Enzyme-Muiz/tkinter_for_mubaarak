@@ -2,65 +2,12 @@ from tkinter import *
 from tkinter import ttk
 import random
 import time
+
+##### numbers and operators to be used in generating equations
 list_one = range(50)
 list_two = range(50)
 list_three = ["+", "-", "X", "/"]
 
-def generate_function():
-    global third
-    global first
-    global second
-    global value
-    third = random.choice(list_three)
-    first = random.choice(list_one)
-    second = random.choice(list_one)
-    if third == "-":
-        second = random.randint(0, first)
-    elif third == "/":
-        second = random.randint(1, 10)
-        while first % second != 0:
-            first = random.randint(1,100)
-    elif third == "X":
-        second = random.randint(1, 10)
-        first = random.randint(1,12)
-
-    string = str(first)+ third + str(second)
-    lab1.config(text = string)
-    clear_text()
-    switch_on()
-    try:
-        value= value+1
-    except NameError:
-        value = 1
-    update_progress(value)
-
-    return (first, second, third)
-
-   
-
-
-
-
-window = Tk()
-window.configure(bg='lightgreen')
-window.title("First One")
-window.minsize(width=200, height = 400)
-window.maxsize(width=400, height = 700)
-
-progress_bar = ttk.Progressbar(window, length=50, mode="determinate", orient="horizontal")
-progress_bar.pack(pady=(10, 10))  
-
-
-
-B1  = Button(window, text ="generate", command = generate_function)
-B1.pack()
-text1 = "Please \n press generate"
-
-lab1 = Label(window, text= text1, font = 15, fg = "#ff0", bg = "#000000")
-lab1.pack(pady=(20, 20))
-
-input = Entry(window)
-input.pack()
 
 def clear_text():
     input.delete(0, END)
@@ -111,7 +58,64 @@ def baba():
         lab2.config(text = final_ans, fg = "red")
     switch_off()
 
+#####this functions generate the equation
+def generate_function():
+    global third
+    global first
+    global second
+    global value
+    third = random.choice(list_three)
+    first = random.choice(list_one)
+    second = random.choice(list_one)
+    if third == "-":
+        second = random.randint(0, first)
+    elif third == "/":
+        second = random.randint(1, 10)
+        while first % second != 0:
+            first = random.randint(1,100)
+    elif third == "X":
+        second = random.randint(1, 10)
+        first = random.randint(1,12)
 
+    string = str(first)+ third + str(second)
+    lab1.config(text = string)
+    clear_text()     
+    switch_on()
+    try:
+        value= value+1
+    except NameError:
+        value = 1
+    update_progress(value)
+
+    return (first, second, third)
+
+
+
+   
+
+
+
+
+window = Tk()
+window.configure(bg='lightgreen')
+window.title("First One")
+window.minsize(width=300, height = 400)
+window.maxsize(width=400, height = 700)
+
+progress_bar = ttk.Progressbar(window, length=50, mode="determinate", orient="horizontal")
+progress_bar.pack(pady=(10, 10))  
+
+
+
+B1  = Button(window, text ="generate", command = generate_function)
+B1.pack()
+text1 = "Please \n press generate"
+
+lab1 = Label(window, text= text1, font = 15, fg = "#ff0", bg = "#000000")
+lab1.pack(pady=(20, 20))
+
+input = Entry(window)
+input.pack()
 
 B2  = Button(window, text ="validate", command= baba)
 B2.pack()
@@ -122,3 +126,14 @@ lab2 = Label(window, text= text2, font = 15, fg = "#ff0", bg = "#000000")
 lab2.pack(pady=(20, 20))
 
 window.mainloop()
+
+
+#C:\Users\rajim\Anaconda3\Scripts\pyinstaller.exe --noconsole -F tkinter1.py
+
+
+
+
+
+
+
+
