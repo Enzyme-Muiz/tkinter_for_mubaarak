@@ -141,56 +141,77 @@ y = (screen_height/2) - (height/2)
  
 window.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
+
+
+
+
+
+
+
+
+
+def switch_off_arithmetic_button():
+    arithmetic_button["state"] = "disabled"
+    
+
+
+
+
 def ArithmeticWindow():
     global frontend_equation
     global success_or_not_frontend
     global input1
-    window1 = Toplevel(window)
-    window1.configure(bg='lightgreen')
-    window1.title("Arithmetic")
-    width = 600
-    height = 500
-    window1.minsize(width= width, height = height)
-    window1.maxsize(width= width, height = height)
-    screen_width = window1.winfo_screenwidth()  # Width of the screen
-    screen_height = window1.winfo_screenheight() # Height of the screen
- 
-    # Calculate Starting X and Y coordinates for Window
-    x = (screen_width/2) - (width/2)
-    y = (screen_height/2) - (height/2)
- 
-    window1.geometry('%dx%d+%d+%d' % (width, height, x, y))
-
-    buttons = ttk.Frame(window1)
+    overall_arithmetic_frame = tk.Frame(window, bg = "lightblue", height = 350, width = 800, borderwidth=10)
+    overall_arithmetic_frame.pack()
+    buttons = ttk.Frame(overall_arithmetic_frame)
     buttons.pack(pady = 5)
     text_for_progress_bar = "Progress_bar:"
-    label_for_progress_bar = Label(buttons, text= text_for_progress_bar, font = 15, fg = "black", bg = "lightgreen")
+    label_for_progress_bar = Label(buttons, text= text_for_progress_bar, font = 13, fg = "black", bg = "lightblue")
     label_for_progress_bar.pack(side = LEFT)  
     progress_bar = ttk.Progressbar(buttons, length=50, mode="determinate", orient="horizontal")
     progress_bar.pack()   
-    generate_button  = Button(window1, text ="generate", command = generate_function)
+    generate_button  = Button(overall_arithmetic_frame, text ="generate", command = generate_function)
     generate_button.pack()
     text1 = "Please \n press generate"
     
-    frontend_equation = Label(window1, text= text1, font = 15, fg = "#ff0", bg = "#000000")
+    frontend_equation = Label(overall_arithmetic_frame, text= text1, font = 15, fg = "#ff0", bg = "#000000")
     frontend_equation.pack(pady=(20, 20))
 
-    input1 = Entry(window1)
+    input1 = Entry(overall_arithmetic_frame)
     input1.pack()
 
-    validate_button  = Button(window1, text ="validate", command= validate_function)
+    validate_button  = Button(overall_arithmetic_frame, text ="validate", command= validate_function)
     validate_button.pack()
 
     text2 = "success or \nTry again"
 
-    success_or_not_frontend = Label(window1, text= text2, font = 15, fg = "#ff0", bg = "#000000")
+    success_or_not_frontend = Label(overall_arithmetic_frame, text= text2, font = 15, fg = "#ff0", bg = "#000000")
     success_or_not_frontend.pack(pady=(20, 20))
+    switch_off_arithmetic_button()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def SequenceWindow():
     global sequence_question
     window2 = Toplevel(window)
-    window2.configure(bg='lightgreen')
+    window2.configure(bg='purple')
     window2.title("Sequence")
     width = 600
     height = 500
@@ -228,9 +249,9 @@ def generate_sequence_after_button_click():
 
 
 
-arithmetic_button = Button(window, text ="Arithmetic_questions", command = ArithmeticWindow)
+arithmetic_button = Button(window, text ="Arithmetic_questions", bg = "lightblue", command = ArithmeticWindow)
 arithmetic_button.pack()  
-sequence_button = Button(window, text ="Sequence_questions", command = SequenceWindow)
+sequence_button = Button(window, text ="Sequence_questions",bg = "purple", command = SequenceWindow)
 sequence_button.pack()
 
 
@@ -255,6 +276,54 @@ window.mainloop()
 
 #C:\Users\rajim\Anaconda3\Scripts\pyinstaller.exe --noconsole -F tkinter1.py
 
+
+
+
+#####some unneeded functions
+# def ArithmeticWindow1():
+#     global frontend_equation
+#     global success_or_not_frontend
+#     global input1
+#     window1 = Toplevel(window)
+#     window1.configure(bg='lightblue')
+#     window1.title("Arithmetic")
+#     width = 600
+#     height = 500
+#     window1.minsize(width= width, height = height)
+#     window1.maxsize(width= width, height = height)
+#     screen_width = window1.winfo_screenwidth()  # Width of the screen
+#     screen_height = window1.winfo_screenheight() # Height of the screen
+ 
+#     # Calculate Starting X and Y coordinates for Window
+#     x = (screen_width/2) - (width/2)
+#     y = (screen_height/2) - (height/2)
+ 
+#     window1.geometry('%dx%d+%d+%d' % (width, height, x, y))
+
+#     buttons = ttk.Frame(window1)
+#     buttons.pack(pady = 5)
+#     text_for_progress_bar = "Progress_bar:"
+#     label_for_progress_bar = Label(buttons, text= text_for_progress_bar, font = 15, fg = "black", bg = "lightgreen")
+#     label_for_progress_bar.pack(side = LEFT)  
+#     progress_bar = ttk.Progressbar(buttons, length=50, mode="determinate", orient="horizontal")
+#     progress_bar.pack()   
+#     generate_button  = Button(window1, text ="generate", command = generate_function)
+#     generate_button.pack()
+#     text1 = "Please \n press generate"
+    
+#     frontend_equation = Label(window1, text= text1, font = 15, fg = "#ff0", bg = "#000000")
+#     frontend_equation.pack(pady=(20, 20))
+
+#     input1 = Entry(window1)
+#     input1.pack()
+
+#     validate_button  = Button(window1, text ="validate", command= validate_function)
+#     validate_button.pack()
+
+#     text2 = "success or \nTry again"
+
+#     success_or_not_frontend = Label(window1, text= text2, font = 15, fg = "#ff0", bg = "#000000")
+#     success_or_not_frontend.pack(pady=(20, 20))
 
 
 
